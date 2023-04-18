@@ -1,7 +1,7 @@
 const express = require("express")
 const port = 8080
 const app = express()
-const { authorize, redirect } = require("./webexOAuthHelper")
+const { requestUrl, redirect } = require("./webexOAuthHelper")
 const { createMeeting } = require("./webexMeetingsHelper")
 const bodyParse = require("body-parser")
 app.use(
@@ -17,7 +17,8 @@ app.get("/", async (req, res) => {
 })
 
 app.get("/api/webex/authorize", async (req, res) => {
-  return res.redirect(authorize())
+  console.log('requestUrl');
+  return res.redirect(requestUrl)
 })
 
 app.get("/api/webex/redirect", async (req, res) => {
